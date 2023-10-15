@@ -21,7 +21,7 @@ const ShowerChart = ({ data }) => {
           color: '#ffffff' 
         },
         hAxis: {
-          title: '',
+          title: 'Date',
           textStyle: {
             color: '#ffffff' 
           },

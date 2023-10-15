@@ -11,9 +11,14 @@ function App() {
   const [showerData, setShowerData] = useState(null);
 
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
+  const isMobile = /iPhone|iPad|iPod|Android|BlackBerry|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+  
+  if (isMobile) {
+    console.log('User is on a mobile device',);
+  } else {
+    console.log('User is not on a mobile device');
+  }
 
 
   useEffect(() => {
@@ -23,7 +28,6 @@ function App() {
       .then(snapshot => {
         if (snapshot.exists()) {
           const data = snapshot.val();
-          console.log(data)
           setShowerData(data);
         } else {
           console.log('No data available');
@@ -40,7 +44,7 @@ function App() {
 
 
   const writeToDatabase = () => {
-
+    // Check if date, duration, and time are not null
     if (date && duration && time) {
       const showerRef = ref(db, '/showers-39801jdj-wd-x-vl-l-wadlwaodkw0-s-12');
       const newShowerInfoRef = push(showerRef);
@@ -70,8 +74,9 @@ function App() {
     <div className="viewport">
       
       <div className="centered-container">
-      <h1>Shower Data</h1>
-      {showerData && <ShowerChart data={showerData} />}
+      
+      {isMobile ? <h1 style={{textAlign:'center'}}>Enter your shower stats here</h1> : (showerData && <><h1>Shower Data</h1><ShowerChart data={showerData} /></>)}
+
       <br>
       </br>
       <br>
