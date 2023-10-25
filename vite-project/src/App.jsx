@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ref, push, set, get } from 'firebase/database';
 import { db } from './firebase-config';
 import ShowerChart from './components/Graph';
+import Welcome from './components/Welcome';
 
 function App() {
 
@@ -72,7 +73,7 @@ function App() {
 
   return (
     <div className="viewport">
-      
+      <Welcome/>
       <div className="centered-container">
       
       {isMobile ? <h1 style={{textAlign:'center'}}>Enter your shower stats here</h1> : (showerData && <><h1>Shower Data</h1><ShowerChart data={showerData} /></>)}
